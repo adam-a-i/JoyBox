@@ -1,0 +1,71 @@
+.header{
+  color: rgb(0, 0, 0);
+  padding-left: 15px;
+  padding-right: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  width: 100%;
+}
+.intro{
+  flex: 1;
+  max-width: 850px;
+  display: flex;
+  font-size: 45px;
+  margin: auto;
+  font-weight: bold;
+  overflow: hidden;
+}
+.addGift{
+    margin-top: 60px;
+    margin-left: 20%;
+    border: solid;
+    border-width: 1px;
+    background: transparent;
+    width: 120px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 900;
+}
+.steps{
+    margin-top: 20px;
+    margin-left: 20%;
+}
+
+.gift-container {
+    margin-top: 60px;
+    margin-left: 20%;
+}
+.gift{
+    display: flex;
+    align-items: center;
+}
+.circle{
+    width: 30px;
+    display: inline-block;
+    margin-right: 30px;
+}
+.gift-text{
+    display: inline-block;
+}
+
+.reserve-button{
+    width: 30px;
+    display: inline-block;
+    margin-right: 30px;
+    outline: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    background-image: url(images/circle.png);
+    background-size: cover;
+}
+  

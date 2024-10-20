@@ -5,6 +5,7 @@ body {
        on all sides. This removes the default margins. */
     margin: 0;
     background: rgb(255, 255, 255);
+    padding-top: 60px;
   }
   body {
     background-color: #f5ece3; /* Stronger beige background */
@@ -37,5 +38,5 @@ body {
   }
   
   input, select, button {
-    font-family: Roboto, Arial;
+    font-family: "Cabin Sketch", sans-serif;
   }

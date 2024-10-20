@@ -8,7 +8,11 @@ const reservedBtn = document.querySelectorAll('.yes'); //yes button to reserve
 const addGiftButton = document.querySelector('.addGift');//main add gift button
 const addGiftButtonModal = document.querySelector('.addGiftModal');//the add gift button in the popup
 
-
+document.addEventListener('click', e =>{// event delegation for all of the reserving buttons
+    if(e.target.matches('.circle')){
+        modalR.showModal();
+    }
+});
 
 addGiftButtonModal.addEventListener('click', () => {// runs add gift after  add button in modal is clicked
     addGift();
@@ -20,12 +24,6 @@ addGiftButton.addEventListener('click', () => {// shows the modal to input the g
     modalA.showModal();
 });
 
-
-openBtn.forEach((btn) => {//still fixing
-    btn.addEventListener('click', () => {
-        console.log('hi');
-        modalR.showModal();
-});});
 
 closeBtn.forEach((btn) =>{// used to close modals
     btn.addEventListener('click', () => {

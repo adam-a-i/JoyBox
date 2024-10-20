@@ -16,6 +16,7 @@
     <!-- Here are the CSS files for this page. -->
     <link rel="stylesheet" href="../styles/general.css">
     <link rel="stylesheet" href="../styles/page.css">
+    <link rel="stylesheet" href="../styles/modals.css">
   </head>
   <body>
     <div class="header">
@@ -29,10 +30,19 @@
             <p class="gift-text">Playstation 5</p>     
         </div>
     </div>
-    <dialog class="modal" id="modal">
+    <dialog class="modalR">
         <button class="close">x</button>
         <p class="modalText">Are you sure you want to reserve this gift for Adam?</p>
         <button class="yes"> Yes! </button>
     </dialog>
-    <script src="../scripts/modal.js"></script>
+
+    <dialog class="modalA">
+        <button class="close">x</button>
+        <p class="modalText">What gift would you like to add this time?</p>
+        <input class="giftInput" type="text" placeholder="Add you desired gift!">
+        <button class="addGiftModal"> Add </button>
+    </dialog>
+
+    <script type="module" src="../scripts/modals.js"></script>
+    <script type="module" src="../scripts/page.js"></script>
   </body>

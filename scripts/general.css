@@ -1,0 +1,41 @@
+body {
+    font-family: "Cabin Sketch", sans-serif;
+    color: rgb(33, 33, 33);
+    /* The <body> element has a default margin of 8px
+       on all sides. This removes the default margins. */
+    margin: 0;
+    background: rgb(255, 255, 255);
+  }
+  body {
+    background-color: #f5ece3; /* Stronger beige background */
+    background-image: 
+      radial-gradient(circle, rgba(200, 180, 150, 0.3) 2px, transparent 2px), /* Smaller dots with lower opacity */
+      linear-gradient(rgba(200, 180, 150, 0.2) 1px, transparent 1px), /* Horizontal lines with lower opacity */
+      linear-gradient(90deg, rgba(200, 180, 150, 0.2) 1px, transparent 1px); /* Vertical lines with lower opacity */
+    background-size: 40px 40px; /* Grid size */
+    background-position: center;
+  }
+  
+  
+  
+  
+  
+  
+  
+  /* <p> elements have a default margin on the top
+     and bottom. This removes the default margins. */
+  p {
+    margin: 0;
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  
+  select {
+    cursor: pointer;
+  }
+  
+  input, select, button {
+    font-family: Roboto, Arial;
+  }

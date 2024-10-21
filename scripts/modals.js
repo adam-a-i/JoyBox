@@ -10,7 +10,6 @@ const addGiftButtonModal = document.querySelector('.addGiftModal');//the add gif
 
 
 document.addEventListener('click', e =>{// event delegation for all of the reserving buttons
-    console.log(e.target);
     if(e.target.matches('.circle')){
         const button = e.target.parentElement;// because e targets the picutre in the button while we want the button itself
         modalR.showModal();

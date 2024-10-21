@@ -66,23 +66,7 @@
     background: transparent;
     cursor: pointer;
 }
-.modal[open]{/*make sure modal you have the open tag included with the modal container when using flex boxes or else the modal will always appear on the page*/
-    background-color: #f5ece3; /* Stronger beige background */
-    height: 100px;
-    display: flex;
-    flex-direction: column;
-}
-.close{
-    right: 0px;
-    position: absolute;
-    border: none;
-    font-size: 25px;
-    background: transparent;
-}
-.modalText{
-    margin-top:30px;
 
-}
 .yes{
     
     margin: auto;
@@ -94,11 +78,3 @@
     margin-top: 10px;
     font-size: 20px;
 }
-
-
-
-.giftInput{
-    margin-bottom: 15px;
-    margin-top: 15px;
-}
-  

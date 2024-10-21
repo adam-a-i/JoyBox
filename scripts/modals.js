@@ -11,6 +11,8 @@ const addGiftButtonModal = document.querySelector('.addGiftModal');//the add gif
 document.addEventListener('click', e =>{// event delegation for all of the reserving buttons
     if(e.target.matches('.circle')){
         modalR.showModal();
+
+        modalR.dataset.selectedGift = selectedGift.innerHTML;
     }
 });
 
@@ -31,9 +33,10 @@ closeBtn.forEach((btn) =>{// used to close modals
         modalA.close();
 });});
 
-reservedBtn.forEach((btn) => {//after you oficially reserve the present it changes the status and ticks the gift
-    btn.addEventListener('click', () => {
-    const img = document.querySelector('.circle');
-    img.src = '../images/circleChecked.png';
-    modalR.close();
-});});
+reservedBtn.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+        const img = e.target.closest('.modalR').previousElementSibling.querySelector('.circle');
+        img.src = '../images/circleChecked.png';
+        modalR.close();
+    });
+});

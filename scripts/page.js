@@ -1,6 +1,7 @@
 import { gifts } from "../data/gifts.js";
 
 let total = '';
+giftRender();
 export function addGift(){
     const giftText = document.querySelector('.giftInput').value;//gets the gift from the input box
     gifts.push({

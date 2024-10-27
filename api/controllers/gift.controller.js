@@ -1,3 +1,4 @@
+
 const Gift = require("../models/gifts.model.js");
 
 const getGifts =  async (req,res) => { // gets all gifts

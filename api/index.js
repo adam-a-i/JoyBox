@@ -5,8 +5,12 @@ const Gift = require('./models/gifts.model'); // Ensure correct path
 const giftRoute = require('./routes/gift.route')
 require('dotenv').config();
 const app = express();
+const cors = require('cors'); // whenver  code works in node terminal but
+// not in the live server browser do npm install cors
+
 
 // middleware
+app.use(cors())
 app.use(express.json()); // Middleware to parse JSON bodies
 app.use(express.urlencoded({extended: false}));// Middleware to parse forms 
 
@@ -23,8 +27,8 @@ app.get('/', (req, res) => {
 mongoose.connect(process.env.MONGODB_URI)
     .then(() => {
         console.log('CONNECTED to MongoDB');
-        app.listen(5000, () => {
-            console.log('Server is running on port 5000');
+        app.listen(5500, () => {
+            console.log('Server is running on port 5500');
         });
     })
     .catch((error) => {

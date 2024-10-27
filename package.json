@@ -1,5 +1,22 @@
 {
   "dependencies": {
-    "express": "^4.21.1"
-  }
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-session": "^1.18.1",
+    "mongodb": "^6.10.0",
+    "mongoose": "^8.7.3",
+    "nodemon": "^3.1.7"
+  },
+  "name": "joybox",
+  "version": "1.0.0",
+  "description": "JoyBox is a delightful platform designed to help you create and share personalized gift wish lists. Each user gets a unique link to their wish list. Friends can reserve gifts with a simple click, ensuring that no one duplicates their selections.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

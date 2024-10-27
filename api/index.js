@@ -62,7 +62,7 @@ app.delete('/api/gifts/:id', async (req,res) => {
         if(!gift){
             return res.status(404).json({message: 'could not find gift'})
         }
-        res.status(200).json(gift);
+        res.status(200).json({message: "product found and deleted"});
     } catch (error) {
         res.status(500).json({message: error.message});
     }

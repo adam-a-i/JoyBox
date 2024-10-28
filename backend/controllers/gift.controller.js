@@ -34,10 +34,12 @@ const addGift = async (req, res) => { // add gift to database user
 };
 
 
-const updateGiftStatus = async (req,res) => { //update gift
+const updateGiftStatus = async (req,res) => { //update gift status to false after reservation 
     try {
         const id  = req.params.id;
-        const updated  = await Gift.findByIdAndUpdate(id, req.body);
+        const updated  = await Gift.findByIdAndUpdate(id, {
+            status: false
+        }, {new: true}); // new to update the database
         if(!updated){
             return res.status(404).json({message: "product not found"})
         }

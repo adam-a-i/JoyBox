@@ -31,9 +31,9 @@ function giftRender(gifts){
     total = '';
 
     gifts.forEach((gift) => {
-        let Html = 
+        let Html = // gift has id attribute to be used for PUT
         `  
-        <div class="gift">
+        <div class="gift" data-gift-id="${gift._id}">
             <button class="reserve-button"><img src="../images/circle.png" class="circle"></button>
             <p class="gift-text">${gift.name}</p>     
         </div>

@@ -17,13 +17,26 @@ document.addEventListener('click', e =>{// event delegation for all of the reser
     }
 });
 
-function reserveCheck(button){
+async function reserveCheck(button){
     console.log('in reserved button');
     reservedYesBtn.forEach(btn => { // detects for click for the yes button in modal
-    btn.addEventListener('click', () =>{
+    btn.addEventListener('click', async () =>{
+        const giftDiv = button.closest('.gift'); // detects closest gift div to it to return it
+        const giftId = giftDiv.getAttribute('data-gift-id');
+        try {
+            const response = await fetch(`http://localhost:5500/api/gifts/${giftId}`, { // POST call to update status
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(newGift)
+            })
+            if (!response.ok) throw new Error('Failed to add gift');
+        } catch (error) {
+            console.error('Error adding gift:', error);
+        }
         console.log('click detected');
         const img = button.querySelector('.circle');// targets the circle image within the specific button
         img.src = '../images/circleChecked.png';
+
         modalR.close();
     });});
 }

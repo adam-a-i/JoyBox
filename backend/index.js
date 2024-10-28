@@ -1,13 +1,13 @@
 // index.js, imports
 const express = require('express');
 const mongoose = require('mongoose');
-const Gift = require('./api/models/gifts.model'); // Ensure correct path
-const giftRoute = require('./api/routes/gift.route')
+const Gift = require('./models/gifts.model.js'); // Ensure correct path
+const giftRoute = require('./routes/gift.route')
 require('dotenv').config();
 const app = express();
 const cors = require('cors'); // whenver  code works in node terminal but
 // not in the live server browser do npm install cors
-
+// sometimes the DB is just slow asf and you have to wait for a bit and refresh
 
 // middleware
 app.use(cors())

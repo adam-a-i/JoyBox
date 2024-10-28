@@ -3,33 +3,25 @@ let total = '';
 
 export async function addGift() {
     const giftText = document.querySelector('.giftInput').value; // gets the gift from the input box
+    if(!giftText.trim()){//check if its empty
+        console.log('please enter a gift')
+        return;
+    }
 
-    const newGift = {
-        gift: giftText
-    };
+    const newGift = {name: giftText};// create new gift
 
     try {
-        // POST request to add the new gift
         const response = await fetch('http://localhost:5500/api/gifts', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json' // Set the content type
-            },
-            body: JSON.stringify(newGift) // Convert the object to JSON
+            method: 'POST', 
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(newGift)
         });
-
-        // Check if the response is OK
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        // Optionally, you can parse the response if you need to use the new gift data
-        const addedGift = await response.json();
-
-        // Re-render after adding a new gift
-        initGiftDisplay(); 
+        if (!response.ok) throw new Error('Failed to add gift');
+        
+        document.querySelector('.giftInput').value = '';
+        initGiftDisplay();
     } catch (error) {
-        console.error('Error adding gift:', error); // Handle any errors
+        console.error('Error adding gift:', error);
     }
 }
 

@@ -1,8 +1,8 @@
 // index.js, imports
 const express = require('express');
 const mongoose = require('mongoose');
-const Gift = require('./models/gifts.model'); // Ensure correct path
-const giftRoute = require('./routes/gift.route')
+const Gift = require('./api/models/gifts.model'); // Ensure correct path
+const giftRoute = require('./api/routes/gift.route')
 require('dotenv').config();
 const app = express();
 const cors = require('cors'); // whenver  code works in node terminal but

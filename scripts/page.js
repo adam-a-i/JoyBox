@@ -1,14 +1,15 @@
 let total = '';
 
 
-export async function addGift(){
+export async function addGift() {
     const giftText = document.querySelector('.giftInput').value; // gets the gift from the input box
-    
+
     const newGift = {
         gift: giftText
     };
+
     try {
-        //POST request to add the new gift
+        // POST request to add the new gift
         const response = await fetch('http://localhost:5500/api/gifts', {
             method: 'POST',
             headers: {
@@ -17,17 +18,21 @@ export async function addGift(){
             body: JSON.stringify(newGift) // Convert the object to JSON
         });
 
+        // Check if the response is OK
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        // Optionally, you can fetch the updated list of gifts after adding a new one
-        await initGiftDisplay(); // Re-render after adding a new gift
+        // Optionally, you can parse the response if you need to use the new gift data
+        const addedGift = await response.json();
+
+        // Re-render after adding a new gift
+        initGiftDisplay(); 
     } catch (error) {
         console.error('Error adding gift:', error); // Handle any errors
     }
-    initGiftDisplay(); // Re-render after adding a new gift
 }
+
 
 function giftRender(gifts){
     console.log(gifts);
@@ -49,13 +54,13 @@ function giftRender(gifts){
 }
 
 async function initGiftDisplay() {
-    try {
-        const response = await fetch('http://localhost:5500/api/gifts'); // Fetch data once
-        const gifts = await response.json(); // Parse the JSON response
-        giftRender(gifts); // Render the data
-    } catch (error) {
-        console.error('Error fetching gifts:', error); // Handle any errors
-    }
+    await fetch('http://localhost:5500/api/gifts')
+    .then(res => {
+        console.log('p');
+        res.json().then(data => { 
+            giftRender(data);
+        });
+    })
 }
 
 initGiftDisplay();

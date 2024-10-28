@@ -25,10 +25,10 @@ async function reserveCheck(button){
         const giftId = giftDiv.getAttribute('data-gift-id');
         try {
             const response = await fetch(`http://localhost:5500/api/gifts/${giftId}`, { // POST call to update status
-                method: 'POST',
+                method: 'PUT',
                 headers: {'Content-Type':'application/json'},
-                body: JSON.stringify(newGift)
-            })
+                body: JSON.stringify({ status: false })
+            });
             if (!response.ok) throw new Error('Failed to add gift');
         } catch (error) {
             console.error('Error adding gift:', error);

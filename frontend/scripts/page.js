@@ -31,13 +31,24 @@ function giftRender(gifts){
     total = '';
 
     gifts.forEach((gift) => {
-        let Html = // gift has id attribute to be used for PUT
+        let Html;
+        if(gift.status){// checks if gift has been reserved or not
+        Html = // gift has id attribute to be used for PUT
         `  
-        <div class="gift" data-gift-id="${gift._id} data-gift-status="${gift.status}">
+        <div class="gift" data-gift-id="${gift._id}" data-gift-status="${gift.status}">
             <button class="reserve-button"><img src="../images/circle.png" class="circle"></button>
             <p class="gift-text">${gift.name}</p>     
         </div>
-        `;
+        `;}
+        else{
+        Html = // gift has id attribute to be used for PUT
+        `  
+        <div class="gift" data-gift-id="${gift._id} data-gift-status="${gift.status}">
+            <button class="reserve-button"><img src="../images/circleChecked.png" class="circle"></button>
+            <p class="gift-text">${gift.name}</p>     
+        </div>
+        `
+        }
         total += Html;
     });
 

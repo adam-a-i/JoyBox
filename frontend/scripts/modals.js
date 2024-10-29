@@ -16,13 +16,18 @@ document.addEventListener('click', e =>{// event delegation for all of the reser
         reserveCheck(button);//passing the specific button so that we can change it's specific properties
     }
 });
-
+// WORK ON DISABLING THE RESERVATION TO THE GIFTS WHICH HAVE ALREADY BEEN RESERVED
 async function reserveCheck(button){
     console.log('in reserved button');
     reservedYesBtn.forEach(btn => { // detects for click for the yes button in modal
     btn.addEventListener('click', async () =>{
         const giftDiv = button.closest('.gift'); // detects closest gift div to it to return it
         const giftId = giftDiv.getAttribute('data-gift-id');
+        const giftStatus = giftDiv.getAttribute('data-gift-status');
+        if(!giftStatus){//checks if gift is already reserved(if reserved no re-reservation)
+            console.log('cannot add already reserved');
+            return;
+        }
         try {
             const response = await fetch(`http://localhost:5500/api/gifts/${giftId}`, { // POST call to update status
                 method: 'PUT',

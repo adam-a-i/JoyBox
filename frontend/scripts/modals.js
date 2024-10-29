@@ -23,7 +23,7 @@ async function reserveCheck(button){
     btn.addEventListener('click', async () =>{
         const giftDiv = button.closest('.gift'); // detects closest gift div to it to return it
         const giftId = giftDiv.getAttribute('data-gift-id');
-        const giftStatus = giftDiv.getAttribute('data-gift-status') === 'true';// gets status reservation 
+        const giftStatus = giftDiv.getAttribute('data-gift-status') === 'true';// gets status reservation(take care bc this returns a string first)
         console.log(giftStatus);
         if(!giftStatus){//checks if gift is already reserved(if reserved no re-reservation)
             console.log('cannot add already reserved');

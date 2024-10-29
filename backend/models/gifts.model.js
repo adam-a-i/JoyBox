@@ -9,7 +9,7 @@ const GiftSchema = new mongoose.Schema( // Ensure this is 'new mongoose.Schema'
         },
         status: {
             type: Boolean,
-            default: false,
+            default: true,
         },
     }
 );

@@ -26,7 +26,14 @@ async function reserveCheck(button){
         const giftStatus = giftDiv.getAttribute('data-gift-status') === 'true';// gets status reservation(take care bc this returns a string first)
         console.log(giftStatus);
         if(!giftStatus){//checks if gift is already reserved(if reserved no re-reservation)
-            console.log('cannot add already reserved');
+        let originalModalText = document.querySelector('.modalText').innerHTML;
+        let originalDisplayStyle = document.querySelector('.addGiftModal').style.display;
+            document.querySelector('.modalText').innerHTML = 'This gift has already been reserved';
+            document.querySelector('.yes').style.display = 'none';
+            document.querySelector('.close').addEventListener('click', () => {
+                document.querySelector('.modalText').innerHTML = originalModalText;
+                document.querySelector('.yes').style.display = originalDisplayStyle;
+            });
             return;
         }
         try {

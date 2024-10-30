@@ -23,7 +23,7 @@
   font-weight: bold;
   overflow: hidden;
 }
-.addGift{
+.addGift, .create{
     margin-top: 60px;
     margin-left: 20%;
     border: solid;

@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: center;
 
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
@@ -98,6 +98,7 @@ a {
     width: 150px;
     height: 20px;
     border-radius: 7px;
+    position: relative;
 }
 
 .nameDiv{
@@ -106,4 +107,5 @@ a {
     align-items: center;
     justify-content: center;
     margin-top: 70px;
+
 }

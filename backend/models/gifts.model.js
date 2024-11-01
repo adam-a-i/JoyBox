@@ -1,7 +1,7 @@
 // models/gifts.model.js
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({
+const GiftSchema = new mongoose.Schema({
     username: { type: String, required: true },
     gifts: [{
         giftName: { type: String, required: true },

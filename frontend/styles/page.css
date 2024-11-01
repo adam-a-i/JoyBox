@@ -73,6 +73,7 @@
     cursor: pointer;
 }
 .create{
+    text-decoration: none;
     display: block;
     margin: auto;
     height: 100px;
@@ -87,4 +88,8 @@
     align-items: center;
     display: flex;
     justify-content: center;
+}
+
+a {
+    text-decoration: none;
 }

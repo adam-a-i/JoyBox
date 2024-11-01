@@ -93,3 +93,17 @@
 a {
     text-decoration: none;
 }
+
+.name{
+    width: 150px;
+    height: 20px;
+    border-radius: 7px;
+}
+
+.nameDiv{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px;
+}

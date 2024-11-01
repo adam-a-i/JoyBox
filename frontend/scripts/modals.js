@@ -68,7 +68,11 @@ addGiftButton.addEventListener('click', () => {// shows the modal to input the g
 
 closeBtn.forEach((btn) =>{// used to close modals
     btn.addEventListener('click', () => {
-        modalR.close();
-        modalA.close();
+        if (modalR) { // check if modalR exists on this page
+            modalR.close();
+        }
+        if (modalA) { // check if modalA exists on this page
+            modalA.close();
+        }
 });});
 

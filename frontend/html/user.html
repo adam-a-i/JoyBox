@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JoyBox</title>
+    <link rel="icon" type="image/x-icon" href="../images/JoyBoxLogo.jfif">
+    <!-- This code is needed for responsive design to work.
+      (Responsive design = make the website look good on
+      smaller screen sizes like a phone or a tablet). -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Load a font called Roboto from Google Fonts. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Here are the CSS files for this page. -->
+    <link rel="stylesheet" href="../styles/general.css">
+    <link rel="stylesheet" href="../styles/page.css">
+    <link rel="stylesheet" href="../styles/modals.css">
+  </head>
+  <body>
+    <div class="header">
+        <p class="intro">Welcome to your JoyBox</p>
+    </div>
+    <button class="addGift">Add a Gift!</button>
+    <div class="gift-container">
+    </div>
+    <dialog class="modalA">
+        <button class="close">x</button>
+        <p class="modalText">What gift would you like to add this time?</p>
+        <input class="giftInput" type="text" placeholder="Add you desired gift!">
+        <button class="addGiftModal"> Add </button>
+    </dialog>
+
+    <button class="create">Create JoyBox</button>
+    <script type="module" src="../test.js"></script>
+    <script type="module" src="../data/gifts.js"></script>
+    <script type="module" src="../scripts/modals.js"></script>
+    <script type="module" src="../scripts/page.js"></script>
+
+  </body>

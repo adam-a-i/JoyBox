@@ -40,8 +40,17 @@ const getSingleGift = async (req,res) => { //gets gift w specific user and speci
 
 const addGift = async (req, res) => { // add gift to database user 
     try {
-        const gift = await Gift.create(req.body); // Create a new gift document
-        res.status(200).json(gift); // Respond with the created gift
+        const userId = req.params.id;
+        const newGift = req.body;
+        const updatedUser = await Gift.findByIdAndUpdate(
+            userId,
+            { $push: { gifts: newGift } }, // Add the new gift to the gifts array
+            { new: true } // Return the updated user document
+        );
+        if (!updatedUser) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        res.status(200).json(updatedUser); // Respond with the created gift
     } catch (error) {
         res.status(500).json({ message: error.message }); // Handle errors
     }

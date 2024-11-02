@@ -44,7 +44,7 @@ function giftRender(users){
         if(gift.status){// checks if gift has been reserved or not
         Html = // gift has id attribute to be used for PUT
         `  
-        <div class="gift" data-gift-id="${gift.giftName}" data-gift-status="${gift.status}">
+        <div class="gift" data-user-id="${user._id}"data-gift-id="${gift._id}" data-gift-status="${gift.status}">
             <button class="reserve-button"><img src="../images/circle.png" class="circle"></button>
             <p class="gift-text">${gift.giftName}</p>     
         </div>

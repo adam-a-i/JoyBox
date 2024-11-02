@@ -23,6 +23,7 @@ async function reserveCheck(button){
     btn.addEventListener('click', async () =>{
         const giftDiv = button.closest('.gift'); // detects closest gift div to it to return it
         const giftId = giftDiv.getAttribute('data-gift-id');
+        const userId = giftDiv.getAttribute('data-user-id');
         const giftStatus = giftDiv.getAttribute('data-gift-status') === 'true';// gets status reservation(take care bc this returns a string first)
         console.log(giftStatus);
         if(!giftStatus){//checks if gift is already reserved(if reserved no re-reservation)
@@ -37,7 +38,7 @@ async function reserveCheck(button){
             return;
         }
         try {
-            const response = await fetch(`http://localhost:5500/api/gifts/${giftId}`, { // POST call to update status
+            const response = await fetch(`http://localhost:5500/api/gifts/${userId}/${giftId}`, { // PUT call to update status
                 method: 'PUT',
                 headers: {'Content-Type':'application/json'},
                 body: JSON.stringify({ status: false })

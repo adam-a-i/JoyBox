@@ -7,7 +7,7 @@
 
   router.get('/:id/:giftId', getSingleGift);
 
-  router.post('/', addGift);
+  router.post('/:id', addGift);
 
   router.put('/:id/:giftId', updateGiftStatus);
 

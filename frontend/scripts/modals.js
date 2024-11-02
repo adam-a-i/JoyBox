@@ -25,16 +25,16 @@ async function reserveCheck(button){
         const giftId = giftDiv.getAttribute('data-gift-id');
         const userId = giftDiv.getAttribute('data-user-id');
         const giftStatus = giftDiv.getAttribute('data-gift-status') === 'true';// gets status reservation(take care bc this returns a string first)
-        console.log(giftStatus);
         if(!giftStatus){//checks if gift is already reserved(if reserved no re-reservation)
-        let originalModalText = document.querySelector('.modalText').innerHTML;
-        let originalDisplayStyle = document.querySelector('.addGiftModal').style.display;
-            document.querySelector('.modalText').innerHTML = 'This gift has already been reserved';
+            const ogText = document.querySelector('.modalText').innerHTML;
+            document.querySelector('.modalText').innerHTML = 'This gift has already been reserved!';
             document.querySelector('.yes').style.display = 'none';
             document.querySelector('.close').addEventListener('click', () => {
-                document.querySelector('.modalText').innerHTML = originalModalText;
-                document.querySelector('.yes').style.display = originalDisplayStyle;
+                document.querySelector('.modalText').innerHTML = ogText;
+                document.querySelector('.yes').style.display = 'block';
+                modalR.close();
             });
+            console.log('this gift is already reserved')
             return;
         }
         try {
@@ -68,7 +68,9 @@ addGiftButton.addEventListener('click', () => {// shows the modal to input the g
 
 
 closeBtn.forEach((btn) =>{// used to close modals
+    console.log('closing detected');
     btn.addEventListener('click', () => {
+        console.log('closing detected');
         if (modalR) { // check if modalR exists on this page
             modalR.close();
         }

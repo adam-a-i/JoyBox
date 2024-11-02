@@ -29,7 +29,7 @@ export async function addGift() {
 function giftRender(users){
     console.log(users);
     total = '';
-
+    //work on the api, updating, adding.
     users.forEach((user) => {
         let name = user.username;//display users name
         let nameHtml = `
@@ -37,7 +37,7 @@ function giftRender(users){
         `;
         const container = document.querySelector(".header");
         container.innerHTML = nameHtml; // displaying user's name
-
+ 
 
         user.gifts.forEach((gift)=>{
         let Html;
@@ -64,6 +64,8 @@ function giftRender(users){
     const container = document.querySelector(".gift-container");
     container.innerHTML = total; // Simplified rendering
 }
+
+
 
 async function initGiftDisplay() {
     await fetch('http://localhost:5500/api/gifts')

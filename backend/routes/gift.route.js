@@ -1,13 +1,14 @@
   const express = require("express");
   const router = express.Router();
-  const {getGifts, getSingleGift, addGift, updateGiftStatus} = require('../controllers/gift.controller.js');
+  const {getAllUsers, getUser, getSingleGift, addGift, updateGiftStatus} = require('../controllers/gift.controller.js');
 
-  router.get('/', getGifts);
+  router.get('/', getAllUsers)
+  router.get('/:id', getUser);
 
-  router.get('/:id', getSingleGift);
+  router.get('/:id/:giftId', getSingleGift);
 
   router.post('/', addGift);
 
-  router.put('/:id', updateGiftStatus);
+  router.put('/:id/:giftId', updateGiftStatus);
 
   module.exports = router;

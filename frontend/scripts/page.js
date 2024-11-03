@@ -1,10 +1,9 @@
 let total = '';
 
-function giftRender(users){
-    console.log(users);
+function giftRender(user){
+    console.log(user.username);
     total = '';
     //work on the api, updating, adding.
-    users.forEach((user) => {
         let name = user.username;//display users name
         let nameHtml = `
         <p class="intro">Welcome to ${name}'s JoyBox</p>
@@ -33,22 +32,44 @@ function giftRender(users){
         `
         }
         total += Html;
-    });});
+    });
 
-    const container = document.querySelector(".gift-container");
-    container.innerHTML = total; // Simplified rendering
+    const containerG = document.querySelector(".gift-container");
+    containerG.innerHTML = total; // Simplified rendering
 }
 
 
 
 async function initGiftDisplay() {
-    await fetch('http://localhost:5500/api/gifts')
-    .then(res => {
-        console.log('p');
-        res.json().then(data => { 
-            giftRender(data);
-        });
-    })
+    // Extract userId from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('userId');
+
+    console.log(userId);
+    // Check if userId is not null or empty
+    if (!userId) {
+        console.error('User ID is missing in the URL');
+        return; // Exit if userId is invalid
+    }
+
+    try {
+        // Fetch gifts for the given userId
+        const response = await fetch(`http://localhost:5500/api/gifts/${userId}`);
+
+        // Check if the response is OK
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        // Parse the response data as JSON
+        const user = await response.json();
+        console.log(user);
+        // Pass the fetched data to giftRender
+        giftRender(user);
+    } catch (error) {
+        // Handle errors here
+        console.error('Error fetching gifts:', error);
+    }
 }
 
 initGiftDisplay();

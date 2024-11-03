@@ -2,7 +2,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Gift = require('./models/gifts.model.js'); // Ensure correct path
-const giftRoute = require('./routes/gift.route')
+const giftRoute = require('./routes/gift.route');
+const path = require('path'); // Import the path module
 require('dotenv').config();
 const app = express();
 const cors = require('cors'); // whenver  code works in node terminal but
@@ -10,14 +11,15 @@ const cors = require('cors'); // whenver  code works in node terminal but
 // sometimes the DB is just slow asf and you have to wait for a bit and refresh
 
 // middleware
-app.use(cors())
+app.use(cors());
 app.use(express.json()); // Middleware to parse JSON bodies
-app.use(express.urlencoded({extended: false}));// Middleware to parse forms 
+app.use(express.urlencoded({ extended: false })); // Middleware to parse forms 
 
-
-//routes for functions such as get,put,post
+// routes for functions such as get, put, post
 app.use("/api/gifts", giftRoute);
 
+// Serve the HTML page
+app.use(express.static(path.join(__dirname, '..', 'frontend')));
 
 app.get('/', (req, res) => { 
     res.send('Welcome to the Gifts API!'); // Updated response message

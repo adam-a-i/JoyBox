@@ -11,7 +11,7 @@ const getAllUsers = async (req,res) =>{// gets all users from database
 }
 
 
-const getUser =  async (req,res) => { // gets all gifts
+const getUser =  async (req,res) => { // gets all gifts of one user
     try {
         const userId = req.params.id;
         const products = await Gift.findById(userId);

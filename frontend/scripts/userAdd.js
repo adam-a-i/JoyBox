@@ -25,6 +25,7 @@ export async function addGift() {
     const newGift = {giftName: giftText, status: true};// create new gift
     dispAddedGifts(newGift);
     gifts.push(newGift);//adds gift to array
+    document.querySelector('.giftInput').value = "";
 }
 
 async function createJoyBox(){
@@ -40,8 +41,27 @@ async function createJoyBox(){
             body: JSON.stringify({username: username, gifts: gifts})
         });
         if (!response.ok) throw new Error('Failed to add gift');
-        
+        const result = await response.json();
+        const userId = result.user._id;
+
+        try {
+            // Construct the link for this specific user
+            const joyBoxLink = `http://localhost:5500/html/page.html?userId=${userId}`;
+    
+            // Copy the link to the clipboard
+            await navigator.clipboard.writeText(joyBoxLink);
+    
+            // Notify the user that the link has been copied
+            alert("JoyBox link copied to clipboard! Share this link to let others view your JoyBox.");
+        } catch (error) {
+            console.error("Failed to copy the link to the clipboard:", error);
+            alert("Failed to copy the JoyBox link. Please try again.");
+        }
+
+
+
         gifts = [];
+        username.value = '';
     } catch (error) {
         console.error('Error adding gift:', error);
     }

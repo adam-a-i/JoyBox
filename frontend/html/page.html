@@ -1,24 +1,20 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>JoyBox</title>
-    <link rel="icon" type="image/x-icon" href="../images/JoyBoxLogo.jfif">
-    <!-- This code is needed for responsive design to work.
-      (Responsive design = make the website look good on
-      smaller screen sizes like a phone or a tablet). -->
+    <link rel="icon" type="image/x-icon" href="../images/JoyBoxLogo.jfif"> <!-- Removed '../' -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Load a font called Roboto from Google Fonts. -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Here are the CSS files for this page. -->
+    <!-- Updated CSS file paths -->
     <link rel="stylesheet" href="../styles/general.css">
     <link rel="stylesheet" href="../styles/page.css">
     <link rel="stylesheet" href="../styles/modals.css">
-  </head>
-  <body>
+</head>
+<body>
     <div class="header">
     </div>
     <p class="steps">Click on the circle to reserve a gift!</p>
@@ -26,12 +22,12 @@
     </div>
     <dialog class="modalR">
         <button class="close">x</button>
-        <p class="modalText">Are you sure you want to reserve this gift for Adam?(This action cannot be undone)</p>
+        <p class="modalText">Are you sure you want to reserve this gift? (This action cannot be undone)</p>
         <button class="yes"> Yes! </button>
     </dialog>
 
-    
+    <!-- Updated JS file paths -->
     <script type="module" src="../scripts/modals.js"></script>
     <script type="module" src="../scripts/page.js"></script>
-
-  </body>
+</body>
+</html>

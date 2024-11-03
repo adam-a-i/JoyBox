@@ -1,5 +1,5 @@
 import { modalA } from "./modals.js";// exporting a function to addgifts
-let giftsArray = [];
+let gifts = [];
 export async function addGift() {
     const giftText = document.querySelector('.giftInput').value; // gets the gift from the input box
     if(!giftText.trim()){//check if its empty
@@ -13,35 +13,39 @@ export async function addGift() {
     }
 
     const newGift = {giftName: giftText, status: true};// create new gift
+    dispAddedGifts(newGift);
+    gifts.push(newGift);//adds gift to array
+}
 
+async function createJoyBox(){
+    const username = document.querySelector('.name').value;
+    if (!username.trim()) {
+        console.error('Username is required.');
+        return;
+    }
     try {
-        const response = await fetch(`http://localhost:5500/api/gifts/672523e3ac353793836beb86`, {
+        const response = await fetch(`http://localhost:5500/api/gifts`, {
             method: 'POST', 
             headers: {'Content-Type':'application/json'},
-            body: JSON.stringify(newGift)
+            body: JSON.stringify({username: username, gifts: gifts})
         });
         if (!response.ok) throw new Error('Failed to add gift');
         
-        document.querySelector('.giftInput').value = '';
-        initGiftDisplay();
+        gifts = [];
     } catch (error) {
         console.error('Error adding gift:', error);
     }
 }
 
-async function createJoyBox(){
-    const username = document.querySelector('.name');
-    try {
-        const response = await fetch(`http://localhost:5500/api/gifts`, {
-            method: 'POST', 
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify(newGift)
-        });
-        if (!response.ok) throw new Error('Failed to add gift');
-        
-        document.querySelector('.giftInput').value = '';
-        initGiftDisplay();
-    } catch (error) {
-        console.error('Error adding gift:', error);
-    }
+function dispAddedGifts(gift){ 
+    console.log(gift.giftName);
+    let html = 
+    `   <div class="gift">
+            <button class="reserve-button"><img src="../images/circle.png" class="circle"></button>
+            <p class="gift-text">${gift.giftName}</p>     
+        </div>
+        `;
+
+    const container = document.querySelector(".gift-container");
+    container.innerHTML += html; //append to containier
 }

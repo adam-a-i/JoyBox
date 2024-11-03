@@ -19,37 +19,57 @@ document.addEventListener('click', e =>{// event delegation for all of the reser
 const modalText = document.querySelector('.modalText').innerHTML; // Cache the modal text element
 const yesButton = document.querySelector('.yes'); // Cache the yes button
 // WORK ON DISABLING THE RESERVATION TO THE GIFTS WHICH HAVE ALREADY BEEN RESERVED
-async function reserveCheck(button){
-    console.log('in reserved button');
-    reservedYesBtn.forEach(btn => { // detects for click for the yes button in modal
-    btn.addEventListener('click', async () =>{
-        const giftDiv = button.closest('.gift'); // detects closest gift div to it to return it
-        const giftId = giftDiv.getAttribute('data-gift-id');
-        const userId = giftDiv.getAttribute('data-user-id');
-        const giftStatus = giftDiv.getAttribute('data-gift-status') === 'true';// gets status reservation(take care bc this returns a string first)
-        if(!giftStatus){//checks if gift is already reserved(if reserved no re-reservation)
-            document.querySelector('.modalText').innerHTML = 'This gift has already been reserved!';
-            document.querySelector('.yes').style.display = 'none';
-            console.log('this gift is already reserved')
-            return;
-        }
-        try {
-            const response = await fetch(`http://localhost:5500/api/gifts/${userId}/${giftId}`, { // PUT call to update status
-                method: 'PUT',
-                headers: {'Content-Type':'application/json'},
-                body: JSON.stringify({ status: false })
-            });
-            if (!response.ok) throw new Error('Failed to add gift');
-        } catch (error) {
-            console.error('Error adding gift:', error);
-        }
-        console.log('click detected');
-        const img = button.querySelector('.circle');// targets the circle image within the specific button
-        img.src = '../images/circleChecked.png';
+async function reserveCheck(button) {
+    const closeBtn = document.querySelector('.close');
+    const modalText = document.querySelector('.modalText');
+    const yesButtons = reservedYesBtn; // Assuming this is defined elsewhere
+    const originalText = modalText.innerHTML; // Store original text once
 
-        modalR.close();
-    });});
+    closeBtn.addEventListener('click', () => {
+        modalText.innerHTML = originalText; // Always restore original text
+        document.querySelector('.yes').style.display = 'block'; // Show yes button again
+        modalR.close(); // Close the modal
+    });
+
+    console.log('in reserved button');
+
+    yesButtons.forEach(btn => {
+        btn.addEventListener('click', async () => {
+            const giftDiv = button.closest('.gift'); 
+            const giftId = giftDiv.getAttribute('data-gift-id'); 
+            const userId = giftDiv.getAttribute('data-user-id'); 
+            const giftStatus = giftDiv.getAttribute('data-gift-status') === 'true'; 
+
+            console.log(giftStatus);
+
+            if (!giftStatus) {
+                modalText.innerHTML = 'This gift has already been reserved!'; // Change text for already reserved
+                document.querySelector('.yes').style.display = 'none'; // Hide yes button
+                console.log('this gift is already reserved');
+                return; // Exit early
+            }
+
+            try {
+                const response = await fetch(`http://localhost:5500/api/gifts/${userId}/${giftId}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status: false })
+                });
+
+                if (!response.ok) throw new Error('Failed to add gift');
+            } catch (error) {
+                console.error('Error adding gift:', error);
+            }
+
+            console.log('click detected');
+            const img = button.querySelector('.circle'); 
+            img.src = '../images/circleChecked.png'; 
+
+            modalR.close(); // Close the modal after successful reservation
+        });
+    });
 }
+
 
 
 

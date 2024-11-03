@@ -40,9 +40,24 @@ const getSingleGift = async (req,res) => { //gets gift w specific user and speci
 
 const addnewUser = async (req,res) => {
     try {
-        
+        const {username, gifts} = req.body;
+        if (!username || !Array.isArray(gifts)) {
+            return res.status(400).json({ message: "Username and gifts array are required." });
+        }
+
+        // Create a new Gift document with the provided data
+        const newUser = new Gift({
+            username: username,
+            gifts: gifts.map(gift => ({ giftName: gift.giftName, status: gift.status ?? true })) // default status to true
+        });
+
+        // Save the document to the database
+        await newUser.save();
+        // Send a success response
+        res.status(201).json({ message: "User added successfully", user: newUser });
     } catch (error) {
-        
+        console.error("Error adding new user:", error);
+        res.status(500).json({ message: "Failed to add user" });
     }
 }
 

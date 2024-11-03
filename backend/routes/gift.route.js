@@ -9,7 +9,8 @@
 
   router.post('/:id', addGift);
 
-  router.post('/', addnewUser)
+  router.post('/', addnewUser);
+
   router.put('/:id/:giftId', updateGiftStatus);
 
   module.exports = router;

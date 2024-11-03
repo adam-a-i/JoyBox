@@ -1,9 +1,8 @@
-import { addGift } from "./page.js";// exporting a function to addgifts
+import { addGift } from "./userAdd.js";// exporting a function to addgifts
 
 const modalR = document.querySelector('.modalR');//the modal for reserving
 export const modalA = document.querySelector('.modalA');//the modal for adding
 const closeBtns = document.querySelectorAll('.close');
-const reserveBtn = document.querySelectorAll('.reserve-button');// circle button to reserve
 const reservedYesBtn = document.querySelectorAll('.yes'); //yes button to reserve from modal 
 const addGiftButton = document.querySelector('.addGift');//main add gift button
 const addGiftButtonModal = document.querySelector('.addGiftModal');//the add gift button in the popup
@@ -53,14 +52,16 @@ async function reserveCheck(button){
 }
 
 
-addGiftButtonModal.addEventListener('click', () => {// runs add gift after add button in modal is clicked
-    addGift();
-    modalA.close();
-});
-
 
 addGiftButton.addEventListener('click', () => {// shows the modal to input the gift you want to add
     modalA.showModal();
+});
+
+
+
+addGiftButtonModal.addEventListener('click', () => {// runs add gift after add button in modal is clicked
+    addGift();
+    modalA.close();
 });
 
 

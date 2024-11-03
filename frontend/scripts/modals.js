@@ -7,7 +7,6 @@ const reservedYesBtn = document.querySelectorAll('.yes'); //yes button to reserv
 const addGiftButton = document.querySelector('.addGift');//main add gift button
 const addGiftButtonModal = document.querySelector('.addGiftModal');//the add gift button in the popup
 const modalTextElement = document.querySelector('.modalText'); // modal text element
-const originalText = modalTextElement ? modalTextElement.innerHTML : ''; // original modal text content
 
 document.addEventListener('click', e =>{// event delegation for all of the reserving buttons
     if(e.target.matches('.circle')){
@@ -19,57 +18,58 @@ document.addEventListener('click', e =>{// event delegation for all of the reser
 const modalText = document.querySelector('.modalText').innerHTML; // Cache the modal text element
 const yesButton = document.querySelector('.yes'); // Cache the yes button
 // WORK ON DISABLING THE RESERVATION TO THE GIFTS WHICH HAVE ALREADY BEEN RESERVED
-async function reserveCheck(button) {
-    const closeBtn = document.querySelector('.close');
-    const modalText = document.querySelector('.modalText');
-    const yesButtons = reservedYesBtn; // Assuming this is defined elsewhere
-    const originalText = modalText.innerHTML; // Store original text once
+const originalText = document.querySelector('.modalText').innerHTML;
+let closeListener = null;
 
-    closeBtn.addEventListener('click', () => {
-        modalText.innerHTML = originalText; // Always restore original text
-        document.querySelector('.yes').style.display = 'block'; // Show yes button again
-        modalR.close(); // Close the modal
+async function reserveCheck(button){
+    document.querySelector('.close').addEventListener('click', () => {
+        modalR.close();
     });
-
     console.log('in reserved button');
-
-    yesButtons.forEach(btn => {
-        btn.addEventListener('click', async () => {
-            const giftDiv = button.closest('.gift'); 
-            const giftId = giftDiv.getAttribute('data-gift-id'); 
-            const userId = giftDiv.getAttribute('data-user-id'); 
-            const giftStatus = giftDiv.getAttribute('data-gift-status') === 'true'; 
-
-            console.log(giftStatus);
-
-            if (!giftStatus) {
-                modalText.innerHTML = 'This gift has already been reserved!'; // Change text for already reserved
-                document.querySelector('.yes').style.display = 'none'; // Hide yes button
-                console.log('this gift is already reserved');
-                return; // Exit early
+    reservedYesBtn.forEach(btn => { // detects for click for the yes button in modal
+    btn.addEventListener('click', async () =>{
+        const giftDiv = button.closest('.gift'); // detects closest gift div to it to return it
+        const giftId = giftDiv.getAttribute('data-gift-id');
+        const userId = giftDiv.getAttribute('data-user-id');
+        const giftStatus = giftDiv.getAttribute('data-gift-status') === 'true';// gets status reservation(take care bc this returns a string first)
+        console.log(giftStatus);
+        if(!giftStatus){//checks if gift is already reserved(if reserved no re-reservation)
+            // Remove previous listener if it exists
+            if (closeListener) {
+                document.querySelector('.close').removeEventListener('click', closeListener);
             }
+            
+            document.querySelector('.modalText').innerHTML = 'This gift has already been reserved!';
+            document.querySelector('.yes').style.display = 'none';
+            console.log('this gift is already reserved')
+            
+            // Store new listener
+            closeListener = () => {
+                document.querySelector('.modalText').innerHTML = originalText;
+                document.querySelector('.yes').style.display = 'block';
+                modalR.close();
+            };
+            
+            document.querySelector('.close').addEventListener('click', closeListener);
+            return;
+        }
+        try {
+            const response = await fetch(`http://localhost:5500/api/gifts/${userId}/${giftId}`, { // PUT call to update status
+                method: 'PUT',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify({ status: false })
+            });
+            if (!response.ok) throw new Error('Failed to add gift');
+        } catch (error) {
+            console.error('Error adding gift:', error);
+        }
+        console.log('click detected');
+        const img = button.querySelector('.circle');// targets the circle image within the specific button
+        img.src = '../images/circleChecked.png';
 
-            try {
-                const response = await fetch(`http://localhost:5500/api/gifts/${userId}/${giftId}`, {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ status: false })
-                });
-
-                if (!response.ok) throw new Error('Failed to add gift');
-            } catch (error) {
-                console.error('Error adding gift:', error);
-            }
-
-            console.log('click detected');
-            const img = button.querySelector('.circle'); 
-            img.src = '../images/circleChecked.png'; 
-
-            modalR.close(); // Close the modal after successful reservation
-        });
-    });
+        modalR.close();
+    });});
 }
-
 
 
 

@@ -1,13 +1,14 @@
 import { addGift } from "./page.js";// exporting a function to addgifts
 
 const modalR = document.querySelector('.modalR');//the modal for reserving
-const modalA = document.querySelector('.modalA');//the modal for adding
-const closeBtn = document.querySelectorAll('.close'); // close modal
+export const modalA = document.querySelector('.modalA');//the modal for adding
+const closeBtns = document.querySelectorAll('.close');
 const reserveBtn = document.querySelectorAll('.reserve-button');// circle button to reserve
 const reservedYesBtn = document.querySelectorAll('.yes'); //yes button to reserve from modal 
 const addGiftButton = document.querySelector('.addGift');//main add gift button
 const addGiftButtonModal = document.querySelector('.addGiftModal');//the add gift button in the popup
-
+const modalTextElement = document.querySelector('.modalText'); // modal text element
+const originalText = modalTextElement ? modalTextElement.innerHTML : ''; // original modal text content
 
 document.addEventListener('click', e =>{// event delegation for all of the reserving buttons
     if(e.target.matches('.circle')){
@@ -16,6 +17,8 @@ document.addEventListener('click', e =>{// event delegation for all of the reser
         reserveCheck(button);//passing the specific button so that we can change it's specific properties
     }
 });
+const modalText = document.querySelector('.modalText').innerHTML; // Cache the modal text element
+const yesButton = document.querySelector('.yes'); // Cache the yes button
 // WORK ON DISABLING THE RESERVATION TO THE GIFTS WHICH HAVE ALREADY BEEN RESERVED
 async function reserveCheck(button){
     console.log('in reserved button');
@@ -26,14 +29,8 @@ async function reserveCheck(button){
         const userId = giftDiv.getAttribute('data-user-id');
         const giftStatus = giftDiv.getAttribute('data-gift-status') === 'true';// gets status reservation(take care bc this returns a string first)
         if(!giftStatus){//checks if gift is already reserved(if reserved no re-reservation)
-            const ogText = document.querySelector('.modalText').innerHTML;
             document.querySelector('.modalText').innerHTML = 'This gift has already been reserved!';
             document.querySelector('.yes').style.display = 'none';
-            document.querySelector('.close').addEventListener('click', () => {
-                document.querySelector('.modalText').innerHTML = ogText;
-                document.querySelector('.yes').style.display = 'block';
-                modalR.close();
-            });
             console.log('this gift is already reserved')
             return;
         }
@@ -67,15 +64,16 @@ addGiftButton.addEventListener('click', () => {// shows the modal to input the g
 });
 
 
-closeBtn.forEach((btn) =>{// used to close modals
-    console.log('closing detected');
+closeBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
-        console.log('closing detected');
-        if (modalR) { // check if modalR exists on this page
+        console.log('close button clicked');
+        if (modalR && modalR.open) {
+            modalTextElement.innerHTML = originalText; // reset modal text
+            reservedYesBtn.forEach((yesBtn) => yesBtn.style.display = 'block'); // reset yes button display
             modalR.close();
         }
-        if (modalA) { // check if modalA exists on this page
+        if (modalA && modalA.open) {
             modalA.close();
         }
-});});
-
+    });
+});

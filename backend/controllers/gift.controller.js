@@ -1,7 +1,7 @@
 
 const Gift = require("../models/gifts.model.js");
 
-const getAllUsers = async (req,res) =>{
+const getAllUsers = async (req,res) =>{// gets all users from database
     try {
         const products = await Gift.find({});
         res.status(200).json(products)
@@ -9,6 +9,8 @@ const getAllUsers = async (req,res) =>{
         res.status(500).json({message: error.message});
     }
 }
+
+
 const getUser =  async (req,res) => { // gets all gifts
     try {
         const userId = req.params.id;
@@ -36,7 +38,13 @@ const getSingleGift = async (req,res) => { //gets gift w specific user and speci
     }
 };
 
-
+const addnewUser = async (req,res) => {
+    try {
+        
+    } catch (error) {
+        
+    }
+}
 
 const addGift = async (req, res) => { // add gift to database user 
     try {
@@ -78,6 +86,7 @@ const updateGiftStatus = async (req,res) => { //update gift status to false afte
 };
 
 module.exports = { 
+    addnewUser,
     getAllUsers,
     getUser,
     getSingleGift,

@@ -31,7 +31,9 @@ export async function addGift() {
 async function createJoyBox(){
     const username = document.querySelector('.name').value;
     if (!username.trim()) {
-        console.error('Username is required.');
+        document.querySelector('.name').style.borderColor = 'red';
+        document.querySelector('.error').style.innerHTML = "Enter a valid name";
+        document.querySelector('.error').style.display = 'block';
         return;
     }
     try {
@@ -43,7 +45,12 @@ async function createJoyBox(){
         if (!response.ok) throw new Error('Failed to add gift');
         const result = await response.json();
         const userId = result.user._id;
-
+        if(gifts.length == 0){
+            document.querySelector('.name').style.borderColor = 'red';
+            document.querySelector('.error').innerHTML = "Add gifts to your JoyBox";
+            document.querySelector('.error').style.display = 'block';
+            return;
+        }
         try {
             // Construct the link for this specific user
             const joyBoxLink = `http://localhost:5500/html/page.html?userId=${userId}`;
@@ -52,7 +59,10 @@ async function createJoyBox(){
             await navigator.clipboard.writeText(joyBoxLink);
     
             // Notify the user that the link has been copied
-            alert("JoyBox link copied to clipboard! Share this link to let others view your JoyBox.");
+            document.querySelector('.create').innerHTML = 'Link Copied!';
+            document.querySelector('.name').style.borderColor = 'black';
+            document.querySelector('.error').style.display = 'none';
+
         } catch (error) {
             console.error("Failed to copy the link to the clipboard:", error);
             alert("Failed to copy the JoyBox link. Please try again.");

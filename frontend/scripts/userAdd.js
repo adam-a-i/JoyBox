@@ -1,4 +1,14 @@
 import { modalA } from "./modals.js";// exporting a function to addgifts
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createJoyBoxBtn = document.querySelector('.create');
+
+    createJoyBoxBtn.addEventListener('click', () => {
+        createJoyBox();
+    });
+});
+
+
 let gifts = [];
 export async function addGift() {
     const giftText = document.querySelector('.giftInput').value; // gets the gift from the input box

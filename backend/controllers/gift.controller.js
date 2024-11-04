@@ -1,4 +1,4 @@
-
+const mongoose = require('mongoose');
 const Gift = require("../models/gifts.model.js");
 
 const getAllUsers = async (req,res) =>{// gets all users from database
@@ -11,30 +11,44 @@ const getAllUsers = async (req,res) =>{// gets all users from database
 }
 
 
-const getUser =  async (req,res) => { // gets all gifts of one user
+const getUser = async (req, res) => {
     try {
         const userId = req.params.id;
+        if (!mongoose.Types.ObjectId.isValid(userId)) {
+            return res.status(400).json({ message: "Invalid user ID" });
+        }
         const products = await Gift.findById(userId);
-        res.status(200).json(products)
+        if (!products) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        res.status(200).json(products);
     } catch (error) {
-        res.status(500).json({message: error.message})
+        res.status(500).json({ message: error.message });
     }
 };
 
 
-
-const getSingleGift = async (req,res) => { //gets gift w specific user and specific gift
+const getSingleGift = async (req, res) => {
     try {
         const id = req.params.id;
-        const giftId= req.params.giftId;
+        const giftId = req.params.giftId;
+
+        // Validate IDs
+        if (!mongoose.Types.ObjectId.isValid(id) || !mongoose.Types.ObjectId.isValid(giftId)) {
+            return res.status(400).json({ message: "Invalid IDs" });
+        }
 
         const product = await Gift.findOne(
-            { _id: id, 'gifts._id': giftId }, // Match both ID and giftName
-            { 'gifts.$': 1 } // Project to return only the matched gift
+            { _id: id, 'gifts._id': giftId },
+            { 'gifts.$': 1 }
         );
-        res.status(200).json(product)
+
+        if (!product) {
+            return res.status(404).json({ message: "Gift not found" });
+        }
+        res.status(200).json(product);
     } catch (error) {
-        res.status(500).json({message: error.message})
+        res.status(500).json({ message: error.message });
     }
 };
 

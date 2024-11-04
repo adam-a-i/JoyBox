@@ -15,12 +15,17 @@ const { prototype } = require('module');
 app.use(cors());
 app.use(express.json()); // Middleware to parse JSON bodies
 app.use(express.urlencoded({ extended: false })); // Middleware to parse forms 
+// Serve the HTML page
 
 // routes for functions such as get, put, post
 app.use("/api/gifts", giftRoute);
-
-// Serve the HTML page
 app.use(express.static(path.join(__dirname, '..', 'frontend')));
+app.get('/welcome.html', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'frontend', 'html', 'welcome.html'));
+});
+
+
+
 
 app.get('/', (req, res) => { 
     res.send('Welcome to the Gifts API!'); // Updated response message

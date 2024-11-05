@@ -4,7 +4,7 @@ JoyBox is a delightful platform designed to help you create and share personaliz
 
 ## Features
 
-- **Personalized Wish Lists**: Create and customize your own JoyBox.
+- **Personalized JoyBox**: Create and customize your own JoyBox.
 - **Unique Links**: Each user receives a unique link to share their JoyBox.
 - **Gift Reservation**: Friends can reserve gifts to avoid duplicates.
 
@@ -12,7 +12,7 @@ JoyBox is a delightful platform designed to help you create and share personaliz
 
 ![home page](<frontend/images/home page.png>)
 
-### Creating a Wish List
+### Creating a JoyBox
 
 ![home page](<frontend/images//Picture2.png>)
 ![home page](<frontend/images//Picture3.png>)
@@ -23,7 +23,7 @@ JoyBox is a delightful platform designed to help you create and share personaliz
 - **Add Button**: A button to add the item to the JoyBox.
 - **Preview Section**: A real-time preview of the JoyBox as items are added.
 
-### Screenshot 3: Sharing the Wish List
+### Screenshot 3: Sharing the JoyBox
 
 ![home page](<frontend/images//Picture5.png>)
 ![home page](<frontend/images//Picture6.png>)

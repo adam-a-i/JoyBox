@@ -11,7 +11,7 @@
   "name": "joybox",
   "version": "1.0.0",
   "description": "JoyBox is a delightful platform designed to help you create and share personalized gift wish lists. Each user gets a unique link to their wish list. Friends can reserve gifts with a simple click, ensuring that no one duplicates their selections.",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",

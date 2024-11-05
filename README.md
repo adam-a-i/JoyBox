@@ -1,11 +1,11 @@
 # JoyBox
 
-JoyBox is a delightful platform designed to help you create and share personalized gift wish lists. Each user gets a unique link to their wish list. Friends can reserve gifts with a simple click, ensuring that no one duplicates their selections.
+JoyBox is a delightful platform designed to help you create and share personalized gift wish lists. Each user gets a unique link to their JoyBox. Friends can reserve gifts with a simple click, ensuring that no one duplicates their selections.
 
 ## Features
 
-- **Personalized Wish Lists**: Create and customize your own gift wish list.
-- **Unique Links**: Each user receives a unique link to share their wish list.
+- **Personalized Wish Lists**: Create and customize your own JoyBox.
+- **Unique Links**: Each user receives a unique link to share their JoyBox.
 - **Gift Reservation**: Friends can reserve gifts to avoid duplicates.
 
 ### Home Page
@@ -18,10 +18,10 @@ JoyBox is a delightful platform designed to help you create and share personaliz
 ![home page](<frontend/images//Picture3.png>)
 ![home page](<frontend/images//Picture4.png>)
 
-**Description**: This screenshot illustrates the process of creating a wish list. Key elements include:
+**Description**: This screenshot illustrates the process of creating a JoyBox. Key elements include:
 - **Input Fields**: Users can enter the name of the gift, a description, and a link to where it can be purchased.
-- **Add Button**: A button to add the item to the wish list.
-- **Preview Section**: A real-time preview of the wish list as items are added.
+- **Add Button**: A button to add the item to the JoyBox.
+- **Preview Section**: A real-time preview of the JoyBox as items are added.
 
 ### Screenshot 3: Sharing the Wish List
 
@@ -29,7 +29,7 @@ JoyBox is a delightful platform designed to help you create and share personaliz
 ![home page](<frontend/images//Picture6.png>)
 ![home page](<frontend/images//Picture7.png>)
 
-**Description**: This screenshot shows how users can share their wish list. Features highlighted are:
+**Description**: This screenshot shows how users can share their JoyBox. Features highlighted are:
 - **Unique Link**: Each user gets a unique URL to share their wish list with friends and family.
 - **Share Options**: Buttons for sharing via social media, email, or copying the link to the clipboard.
 - **Reserved Gifts**: Indicators showing which gifts have already been reserved by friends to avoid duplicates.
